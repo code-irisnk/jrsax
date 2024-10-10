@@ -4,7 +4,6 @@ import jrsax.core.RSAKeypair;
 import jrsax.message.RSAMessage;
 
 import java.io.PrintStream;
-import java.util.logging.Logger;
 
 /**
  * Entry point for demonstrating RSA encryption and decryption.
@@ -19,7 +18,7 @@ public class Program {
      *
      * @param args Command-line arguments (not used).
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
         PrintStream out = System.out;
         out.println("Welcome to jRSAx!");
 
@@ -42,7 +41,7 @@ public class Program {
         RSAMessage message2 = new RSAMessage("Yes user 1, I can!");
         message2.encrypt(keypair1.getPublicKey().n(), keypair1.getPublicKey().e());
         out.println("Encrypted message: " + message2.getEncryptedMessageAsString());
-;
+
         message2.decrypt(keypair1.getPrivateKey().n(), keypair1.getPrivateKey().d());
         out.println("Decrypted message: " + message2.getDecryptedMessageAsString());
     }

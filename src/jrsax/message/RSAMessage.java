@@ -5,7 +5,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 /**
  * Represents a message that can be encrypted and decrypted using RSA.
@@ -15,17 +14,10 @@ import java.util.logging.Logger;
  * the RSA algorithm.
  */
 public class RSAMessage {
-    private enum MessageState {
-        UNENCRYPTED,
-        ENCRYPTED,
-        DECRYPTED
-    }
-
     private final String message;
     private @Nullable ArrayList<BigInteger> encryptedMessage;
     private @Nullable ArrayList<BigInteger> decryptedMessage;
     private @NotNull MessageState state;
-
     /**
      * Creates a new RSAMessage with the given plain text.
      *
@@ -160,5 +152,11 @@ public class RSAMessage {
      */
     public String getEncryptedMessageAsString() {
         return bigIntegersToMessage(getEncryptedMessage());
+    }
+
+    private enum MessageState {
+        UNENCRYPTED,
+        ENCRYPTED,
+        DECRYPTED
     }
 }

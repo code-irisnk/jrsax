@@ -5,7 +5,6 @@ import jrsax.key.RSAPublicKey;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.util.logging.Logger;
 
 /**
  * Generates an RSA key pair (public and private keys).
