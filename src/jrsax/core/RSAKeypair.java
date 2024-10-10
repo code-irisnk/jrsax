@@ -15,7 +15,6 @@ import java.util.logging.Logger;
  * The public key consists of the modulus and an exponent. The private key consists of the modulus and a different exponent.
  */
 public class RSAKeypair {
-    private static final Logger logger = Logger.getLogger(RSAKeypair.class.getName());
     private final RSAPublicKey publicKey;
     private final RSAPrivateKey privateKey;
 
@@ -42,7 +41,6 @@ public class RSAKeypair {
         publicKey = new RSAPublicKey(n, e);
         privateKey = new RSAPrivateKey(n, d);
 
-        logger.info("RSA Keypair generated successfully.");
     }
 
     /**

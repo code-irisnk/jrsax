@@ -15,8 +15,6 @@ import java.util.logging.Logger;
  * the RSA algorithm.
  */
 public class RSAMessage {
-    private static final Logger logger = Logger.getLogger(RSAMessage.class.getName());
-
     private enum MessageState {
         UNENCRYPTED,
         ENCRYPTED,
@@ -89,7 +87,6 @@ public class RSAMessage {
         }
 
         state = MessageState.ENCRYPTED;
-        logger.info("Message encrypted successfully.");
     }
 
     /**
@@ -112,7 +109,6 @@ public class RSAMessage {
         }
 
         state = MessageState.DECRYPTED;
-        logger.info("Message decrypted successfully.");
     }
 
     /**

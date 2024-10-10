@@ -3,6 +3,7 @@ package jrsax.demo;
 import jrsax.core.RSAKeypair;
 import jrsax.message.RSAMessage;
 
+import java.io.PrintStream;
 import java.util.logging.Logger;
 
 /**
@@ -12,31 +13,37 @@ import java.util.logging.Logger;
  * and the decryption of that message using a private key.
  */
 public class Program {
-    private static final Logger logger = Logger.getLogger(Program.class.getName());
 
     /**
      * The main method, which starts the RSA encryption/decryption demonstration.
      *
      * @param args Command-line arguments (not used).
      */
-    public static void main(String[] args) {
-        logger.info("Starting RSA encryption/decryption demo.");
-        System.out.println("Welcome to jRSAx!");
+    public static void main(String[] args){
+        PrintStream out = System.out;
+        out.println("Welcome to jRSAx!");
 
-        // Generate RSA keypair
-        RSAKeypair keypair = new RSAKeypair();
+        RSAKeypair keypair1 = new RSAKeypair();
 
-        // Log keypair information
-        logger.info("Public Key: " + keypair.getPublicKey().toString());
-        logger.info("Private Key: " + keypair.getPrivateKey().toString());
+        out.println("Public Key of user 1: " + keypair1.getPublicKey().toString());
 
-        // Create a message and encrypt it
-        RSAMessage message = new RSAMessage("Hello World");
-        message.encrypt(keypair.getPublicKey().n(), keypair.getPublicKey().e());
-        System.out.println("Encrypted message: " + message.getEncryptedMessageAsString());
+        RSAKeypair keypair2 = new RSAKeypair();
 
-        // Decrypt the message
-        message.decrypt(keypair.getPrivateKey().n(), keypair.getPrivateKey().d());
-        System.out.println("Decrypted message: " + message.getDecryptedMessageAsString());
+        out.println("Public Key of user 2: " + keypair2.getPublicKey().toString());
+
+        RSAMessage message = new RSAMessage("Hi! I'm user 1! User 2, can you read this?");
+        message.encrypt(keypair2.getPublicKey().n(), keypair2.getPublicKey().e());
+        out.println("Encrypted message: " + message.getEncryptedMessageAsString());
+
+
+        message.decrypt(keypair2.getPrivateKey().n(), keypair2.getPrivateKey().d());
+        out.println("Decrypted message: " + message.getDecryptedMessageAsString());
+
+        RSAMessage message2 = new RSAMessage("Yes user 1, I can!");
+        message2.encrypt(keypair1.getPublicKey().n(), keypair1.getPublicKey().e());
+        out.println("Encrypted message: " + message2.getEncryptedMessageAsString());
+;
+        message2.decrypt(keypair1.getPrivateKey().n(), keypair1.getPrivateKey().d());
+        out.println("Decrypted message: " + message2.getDecryptedMessageAsString());
     }
 }
