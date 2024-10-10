@@ -13,10 +13,6 @@ public class RSAMessage {
         this.message = message;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
     public ArrayList<BigInteger> getEncryptedMessage() {
         return encryptedMessage;
     }
