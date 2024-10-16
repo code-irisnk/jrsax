@@ -37,7 +37,7 @@ public class RSAMessage {
     public @NotNull ArrayList<BigInteger> getEncryptedMessage() {
         if (state != MessageState.ENCRYPTED || encryptedMessage == null) {
             throw new IllegalStateException("Message is not encrypted.");
-        };
+        }
         return encryptedMessage;
     }
 
