@@ -35,10 +35,9 @@ public class RSAMessage {
      * @throws IllegalStateException if the message is not encrypted.
      */
     public @NotNull ArrayList<BigInteger> getEncryptedMessage() {
-        if (state != MessageState.ENCRYPTED) {
+        if (state != MessageState.ENCRYPTED || encryptedMessage == null) {
             throw new IllegalStateException("Message is not encrypted.");
-        }
-        assert encryptedMessage != null;
+        };
         return encryptedMessage;
     }
 
@@ -52,10 +51,9 @@ public class RSAMessage {
      * @throws IllegalStateException if the message has not been decrypted yet.
      */
     public @NotNull ArrayList<BigInteger> getDecryptedMessage() {
-        if (state != MessageState.DECRYPTED) {
+        if (state != MessageState.DECRYPTED || decryptedMessage == null) {
             throw new IllegalStateException("Message is not decrypted yet.");
         }
-        assert decryptedMessage != null;
         return decryptedMessage;
     }
 
@@ -89,12 +87,12 @@ public class RSAMessage {
      * @throws IllegalStateException if the message is not encrypted.
      */
     public void decrypt(@NotNull BigInteger n, @NotNull BigInteger d) {
-        if (state != MessageState.ENCRYPTED) {
+
+        if (state != MessageState.ENCRYPTED || encryptedMessage == null) {
             throw new IllegalStateException("Message is not encrypted yet.");
         }
 
         decryptedMessage = new ArrayList<>();
-        assert encryptedMessage != null;
         for (BigInteger encryptedBigInt : encryptedMessage) {
             BigInteger decryptedBigInt = encryptedBigInt.modPow(d, n);
             decryptedMessage.add(decryptedBigInt);
@@ -138,6 +136,9 @@ public class RSAMessage {
      * @throws IllegalStateException if the message is not decrypted.
      */
     public String getDecryptedMessageAsString() {
+        if (state != MessageState.DECRYPTED) {
+            throw new IllegalStateException("Message is not decrypted.");
+        }
         return bigIntegersToMessage(getDecryptedMessage());
     }
 
@@ -151,6 +152,9 @@ public class RSAMessage {
      * @throws IllegalStateException if the message is not encrypted.
      */
     public String getEncryptedMessageAsString() {
+        if (state != MessageState.ENCRYPTED) {
+            throw new IllegalStateException("Message is not encrypted.");
+        }
         return bigIntegersToMessage(getEncryptedMessage());
     }
 
