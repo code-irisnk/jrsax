@@ -159,6 +159,9 @@ public class RSAMessage {
         return bigIntegersToMessage(getEncryptedMessage());
     }
 
+    /**
+     * Represents the state of the message (unencrypted, encrypted, or decrypted).
+     */
     private enum MessageState {
         UNENCRYPTED,
         ENCRYPTED,
