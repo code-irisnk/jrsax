@@ -18,6 +18,7 @@ public class RSAMessage {
     private @Nullable ArrayList<BigInteger> encryptedMessage;
     private @Nullable ArrayList<BigInteger> decryptedMessage;
     private @NotNull MessageState state;
+
     /**
      * Creates a new RSAMessage with the given plain text.
      *
